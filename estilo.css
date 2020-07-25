@@ -1,0 +1,41 @@
+html {
+  cursor: url(imagens/mata_mosquito.png) 30 30, auto;
+}
+.mosquito1 {
+  width: 50px;
+  height: 50px;
+}
+.mosquito2 {
+  width: 70px;
+  height: 70px;
+}
+.mosquito3 {
+  width: 90px;
+  height: 90px;
+}
+body {
+  background-image: url("imagens/bg.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+#botaoStart {
+  margin: 5px;
+}
+.painel {
+  position: absolute;
+  width: 190px;
+  bottom: 0px;
+  padding: 10px;
+  left: 0px;
+  border-top: solid 1px white;
+  background-color: white;
+  opacity: 0.7;
+}
+.vidas {
+  float: left;
+}
+.cronometro {
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+}
