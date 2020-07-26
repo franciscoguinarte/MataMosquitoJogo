@@ -2,7 +2,7 @@
 let altura = 1; //altura da tela
 let largura = 1; // largura da tela 
 let vidas = 1; // vidas do jogo
-let criaMosquitoTempo = 1500; //
+let criaMosquitoTempo = 1500; // variável de tempo que determina a dificuldade do jogo
 let tempo = 10; // tempo que será decrementado no cronômetro
 let nivel = window.location.search; // dificuldade do jogo [usa o search p recuperar o parâmetro passado pela
 //																		 html da pagina inicial, todos os valores após a interrogação]
@@ -36,6 +36,8 @@ let cronometro = setInterval(
 	}
 	, 1000);
 
+// Bloco condicional que determina dificuldade do jogo, recebendo value do campo de dificuldade e 
+// alterando o tempo de jogo 
 
 if (nivel === 'normal') {
 	//1500ms
@@ -64,59 +66,70 @@ function ajustaTamanhoPalcoJogo() {
 
 ajustaTamanhoPalcoJogo(); // Chamada da função
 
+/**
+ * Função posição randômica é o coração da aplicação, onde o alvo é gerado aleatóriamente ,
+ * onde as vidas são contadas, onde o alvo é eliminado e ajustado
+ */
 
-
-function iniciarJogo() {
-	alert(dificuldade);
-	window.location.href = 'app.html';
-}
-
-//removendo o mosquito anterior (caso exista)
 function posicaoRandomica() {
 	if (document.getElementById('mosquito')) {
+		//verifica se existe um mosquito na tela e o remove, buscando o elemento por ID e utilizando o .remove()
+		//para remover o elemento da DOM, caso o mesmo não seja removido pelo clique
 		document.getElementById('mosquito').remove();
 
-		// console.log("O elemento selecionado foi " + vidas);
 		if (vidas > 3) {
-			window.location.href = "fim_de_jogo.html";
+			window.location.href = "fim_de_jogo.html"; // Aqui, caso chegue a gastar 3 vidas, utiliza-se o 
+			//.location.href para redirecionar para a pagina de game over
 		} else {
 			document.getElementById('v' + vidas).src = "imagens/coracao_vazio.png"
+			// aqui, caso o jogador ainda tenha vidas, o elemento é alterado e o numero de
+			// vidas perdidas é aumentado 
 			vidas++;
 		}
 
 	}
 	// Determinando as coordenadas aleatórias
 	let posicaoX = Math.floor(Math.random() * largura) - 90;
+	/* utiliza-se o math.floor para aproximar para baixo o valor gerado randomicamente
+	* pela função math.random(), que é multiplicado pelas dimensões da tela
+	* e subtraido de 90, que é o limite do tamanho da imagem do mosquito maior, determinado no style
+	* para que a imagem fique ajustada na tela e não "transborde"
+	*/
 	let posicaoY = Math.floor(Math.random() * altura) - 90;
 	posicaoX = posicaoX <= 0 ? 0 : posicaoX;
 	posicaoY = posicaoY <= 0 ? 0 : posicaoY;
-	console.log(posicaoX, posicaoY);
-	console.log(posicaoX, posicaoY);
+
+	// console.log(posicaoX, posicaoY);
+	// console.log(posicaoX, posicaoY);
 
 
 	// criando elemento html
 
-	let mosquito = document.createElement('img');
+	let mosquito = document.createElement('img'); // criação do elemento alvo
 
 
-	mosquito.src = 'imagens/mosquito.png'
-	mosquito.className = tamanhoAleatorio();
-	mosquito.style.left = posicaoX + 'px';
-	mosquito.style.top = posicaoY + 'px';
-	mosquito.style.position = 'absolute';
-	mosquito.style.transform = ladoAleatorio();
-	mosquito.id = 'mosquito';
+	mosquito.src = 'imagens/mosquito.png' // determinado a fonte da imagem
+	mosquito.className = tamanhoAleatorio(); // determina o nome da class da imagem a partir do tamanho do alvo
+	mosquito.style.left = posicaoX + 'px'; // posição do alvo no eixo X
+	mosquito.style.top = posicaoY + 'px'; //  posição do alvo no eixo Y
+	mosquito.style.position = 'absolute'; // determinação da posição como absolute
+	mosquito.style.transform = ladoAleatorio(); // determinada a rotação do alvo, se a imagem está espelhada p esquerda ou direita
+	mosquito.id = 'mosquito'; // determinado o ID do elemento
+
 	mosquito.onclick = function () {
+		// mais uma vez, a função utilizada para remover o alvo, só que agora utilizando o clique do mouse
 		this.remove();
 	}
-	document.body.appendChild(mosquito);
+
+	document.body.appendChild(mosquito); // exporta elemento para o DOM HTML
 
 
 }
-function tamanhoAleatorio() {
-	let classe = Math.floor(Math.random() * 3);
-	console.log(classe);
 
+function tamanhoAleatorio() {
+	// Geração de numeros aleatórios entre 1 e 3, para determinar tamanho do alvo, retornando a string de
+	// determinação da class no CSS, para ser renderizada com width e height diferentes
+	let classe = Math.floor(Math.random() * 3);
 	switch (classe) {
 		case 0:
 			return 'mosquito1';
@@ -129,6 +142,7 @@ function tamanhoAleatorio() {
 
 }
 function ladoAleatorio() {
+	// função que gera dois numeros aleatoruis entre 0 e 1, caso 0 o alvo receberá um "espelhamento"
 	let refletir = Math.floor(Math.random() * 2);
 
 	if (refletir == 0) {

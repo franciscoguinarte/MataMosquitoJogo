@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mata-Mosquito</title>
+    <title>Mata-Mosquito : O Jogo</title>
+
     <meta charset="utf-8" />
     <meta lang="pt-BR" />
+    <meta name="description" content="Jogo Mata-Mosquito" />
+    <meta name="keywords" content="Jogo,Mata-Mosquito, Javascript,js" />
+    <meta name="author" content="Francisco Filho" />
+
     <link rel="stylesheet" type="text/css" href="estilo.css" />
     <script src="jogo.js"></script>
   </head>
 
   <body onresize="ajustaTamanhoPalcoJogo()">
+    <!-- Ajuste de tela dinânico, acompanhando o resize do body -->
     <div class="painel">
+      <!-- Painel do jogo, com os corações de vida do jogador e o cronômetro -->
       <div class="vidas">
+        <!-- Vidas -->
         <img id="v1" src="imagens/coracao_cheio.png" />
         <img id="v2" src="imagens/coracao_cheio.png" />
         <img id="v3" src="imagens/coracao_cheio.png" />
       </div>
+
       <div class="cronometro">
+        <!-- Cronometro -->
         Tempo Restante : <span id="cronometro"></span>
       </div>
     </div>
     <script>
+      /*Recebe o valor de tempo determinado em uma variável no arquivo jogo.js
+       * e determina o cronômetro
+       */
       document.getElementById("cronometro").innerHTML = tempo;
+
       let criaMosquito = setInterval(function () {
-        posicaoRandomica();
-      }, criaMosquitoTempo);
+        // Função responsável pela dificuldade do jogo quanto a velocidade de geração do alvo
+        posicaoRandomica(); // função geradora do alvo
+      }, criaMosquitoTempo); // tempo de refresh
     </script>
   </body>
 </html>
