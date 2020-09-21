@@ -3,7 +3,7 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+
 
 De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
 
@@ -14,13 +14,13 @@ De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
 OS X & Linux:
 
 ```sh
-npm install my-crazy-module --save
+Não é necessária instalação. Roda no browser
 ```
 
 Windows:
 
 ```sh
-edit autoexec.bat
+Não é necessária instalação. Roda no browser
 ```
 
 ## Exemplo de uso
@@ -55,9 +55,9 @@ npm test
 
 ## Meta
 
-Seu Nome – [@SeuNome](https://twitter.com/...) – SeuEmail@exemplo.com
+Francisco Guinarte – [@FranciscoGuinarte](https://twitter.com/...) – francisco.guinarte@outlook.com.br
 
-Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
+Distribuído sob a licença.
 
 [https://github.com/yourname/github-link](https://github.com/othonalberto/)
 
